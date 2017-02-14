@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Product.cs" company="CandiSyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the Product type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-namespace CS.Models.ProductViewModels
+namespace CS.Models.CandiSyrupViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class Product
     {
+        [Key]
         public int Id { get; set; }
 
         public string Name { get; set; }

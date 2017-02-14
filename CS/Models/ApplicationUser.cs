@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ApplicationUser.cs" company="Candisysrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the ApplicationUser type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS.Models
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {

@@ -1,21 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using CS.Data;
-using CS.Models;
-using CS.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Startup.cs" company="Candisyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the Startup type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS
 {
+    using CS.Data;
+    using CS.Models;
+    using CS.Services;
+
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -32,7 +37,7 @@ namespace CS
             }
 
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            this.Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -78,7 +83,6 @@ namespace CS
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
