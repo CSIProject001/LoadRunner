@@ -1,0 +1,122 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model IEnumerable<CS.Models.ProductViewModels.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    
+    var itemCount = 1;
+}
+
+
+
+<div class="container">
+<h2>Products</h2>
+    @{
+        @: @User.Identity.Name 
+
+    }
+
+<p>@ViewData["UserName"]</p>
+<p>
+        <h4><a asp-action="Create"><i class="fa fa-plus"></i> Add New Product</a></h4>
+    </p>
+    <hr />
+    @{
+        foreach (var product in Model)
+        {
+            if (itemCount == 1 || itemCount % 3 == 0)
+            {
+                @:<div class="row">
+            }
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-title">
+                        <b>@product.Name</b>
+                        <i class="fa fa-edit" style="font-size: 20px; color: red; float: right;"></i>
+                    </div>
+                    <div class="panel-body panel-primary">
+                        <img src="@product.ImageName" class="img-responsive" alt="Image" asp-append-version="true"/>
+                    </div>
+                    <div class="panel-body panel-primary">
+                        <div>@product.QuantityPerUnit</div>
+                        <div>@product.ReOrderLevel</div>
+                        <div>@product.UnitPrice</div>
+                        <div>@product.UnitsInOrder</div>
+                    </div>
+                <div class="panel-footer">@product.ImageName</div>
+            </div>
+        </div>
+            if (itemCount % 3 == 0)
+            {
+                @:</div>
+            }
+            itemCount++;
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuantityPerUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReOrderLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitsInOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitsInStock)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReOrderLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitsInOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitsInStock)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
