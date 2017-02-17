@@ -1,12 +1,25 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using CS.Data;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ApplicationDbContextModelSnapshot.cs" company="CandiSyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the ApplicationDbContextModelSnapshot type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS.Data.Migrations
 {
+    using System;
+
+    using CS.Data;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
+
+    /// <summary>
+    /// The application db context model snapshot.
+    /// </summary>
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
@@ -16,9 +29,11 @@ namespace CS.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rc3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CS.Models.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id");
+            modelBuilder.Entity(
+                "CS.Models.ApplicationUser",
+                b =>
+                    {
+                        b.Property<string>("ID");
 
                     b.Property<int>("AccessFailedCount");
 
@@ -53,7 +68,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -67,7 +82,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("ID");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -78,7 +93,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("NormalizedName")
                         .HasAnnotation("MaxLength", 256);
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("NormalizedName")
                         .HasName("RoleNameIndex");
@@ -88,7 +103,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
@@ -98,7 +113,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("RoleId")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("RoleId");
 
@@ -107,7 +122,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
@@ -117,7 +132,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("UserId")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("UserId");
 

@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="00000000000000_CreateIdentitySchema.cs" company="CandiSyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the CreateIdentitySchema type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CreateIdentitySchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,11 +21,11 @@ namespace CS.Data.Migrations
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                                      {
+                                          Id = table.Column<string>(maxLength: 256, nullable: false),
+                                          ConcurrencyStamp = table.Column<string>(nullable: true),
+                                          Name = table.Column<string>(maxLength: 256, nullable: true),
+                                          NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +50,7 @@ namespace CS.Data.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(maxLength: 256, nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -72,7 +79,7 @@ namespace CS.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,7 +88,7 @@ namespace CS.Data.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -93,7 +100,7 @@ namespace CS.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,7 +109,7 @@ namespace CS.Data.Migrations
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -113,7 +120,7 @@ namespace CS.Data.Migrations
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,7 +129,7 @@ namespace CS.Data.Migrations
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -130,8 +137,8 @@ namespace CS.Data.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(maxLength: 256, nullable: false),
+                    RoleId = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,13 +147,13 @@ namespace CS.Data.Migrations
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 

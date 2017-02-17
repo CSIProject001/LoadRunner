@@ -1,5 +1,5 @@
 @using CS.Models.ProfileViewModels;
-@model Customer;
+@model ApplicationUser;
 
 @{
     ViewData["Title"] = "Create";
@@ -9,7 +9,7 @@
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>ApplicationUser</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CS.Models.CandiSyrupViewModels
+namespace CS.Models.ProductViewModels
 {
     public class OrderItem
     {

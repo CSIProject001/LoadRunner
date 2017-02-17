@@ -12,7 +12,7 @@ namespace CS.Models.OrderViewModels
     using System;
     using System.Collections.Generic;
 
-    using CS.Models.CandiSyrupViewModels;
+    using CS.Models.ProductViewModels;
 
     /// <summary>
     /// The order.

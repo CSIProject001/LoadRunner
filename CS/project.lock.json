@@ -695,26 +695,6 @@
           "lib/netstandard1.5/Microsoft.AspNetCore.Razor.Runtime.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Razor.Runtime": "1.0.0",
-          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
-          "Microsoft.DotNet.ProjectModel.Loader": "1.0.0-preview2-003121",
-          "Microsoft.Extensions.CommandLineUtils": "1.0.0",
-          "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.0",
-          "Newtonsoft.Json": "9.0.1",
-          "System.Diagnostics.Process": "4.1.0",
-          "System.Runtime.Serialization.Primitives": "4.1.1"
-        },
-        "compile": {
-          "lib/netcoreapp1.0/dotnet-razor-tooling.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/dotnet-razor-tooling.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.ResponseCaching.Abstractions/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1023,6 +1003,25 @@
           "lib/netstandard1.6/Microsoft.DotNet.Cli.Utils.dll": {}
         }
       },
+      "Microsoft.DotNet.InternalAbstractions/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.AppContext": "4.1.0",
+          "System.Collections": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.IO.FileSystem": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll": {}
+        }
+      },
       "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1063,19 +1062,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll": {}
-        }
-      },
-      "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
-          "System.Runtime.Loader": "4.0.0"
-        },
-        "compile": {
-          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore/1.1.0": {
@@ -5020,22 +5006,6 @@
         "lib/netstandard1.5/Microsoft.AspNetCore.Razor.Runtime.xml"
       ]
     },
-    "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final": {
-      "sha512": "gUFr7P3hVd7ILgY5Q5AnBHxatElop3kpn7uYX7kPVktvWMkL0HK2DKw66hqYTy5BNz41BTuxCn0Foa7aKwvTVA==",
-      "type": "package",
-      "path": "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final",
-      "files": [
-        "Microsoft.AspNetCore.Razor.Tools.1.0.0-preview2-final.nupkg.sha512",
-        "Microsoft.AspNetCore.Razor.Tools.nuspec",
-        "lib/net451/dotnet-razor-tooling.exe",
-        "lib/net451/dotnet-razor-tooling.xml",
-        "lib/netcoreapp1.0/dotnet-razor-tooling.dll",
-        "lib/netcoreapp1.0/dotnet-razor-tooling.runtimeconfig.json",
-        "lib/netcoreapp1.0/dotnet-razor-tooling.xml",
-        "runtimes/win7-x64/lib/net451/dotnet-razor-tooling.exe",
-        "runtimes/win7-x86/lib/net451/dotnet-razor-tooling.exe"
-      ]
-    },
     "Microsoft.AspNetCore.ResponseCaching.Abstractions/1.1.0": {
       "sha512": "Mdj0FP6fP44sYaSRmhUBEpOXnN3kykpd0/8e48iEoSybId5x5XreIeDEEhTYF+r/QA7H8Y33fjVR1cP996OgDA==",
       "type": "package",
@@ -5329,6 +5299,17 @@
         "lib/netstandard1.6/Microsoft.DotNet.Cli.Utils.dll"
       ]
     },
+    "Microsoft.DotNet.InternalAbstractions/1.0.0": {
+      "sha512": "AAguUq7YyKk3yDWPoWA8DrLZvURxB/LrDdTn1h5lmPeznkFUpfC3p459w5mQYQE0qpquf/CkSQZ0etiV5vRHFA==",
+      "type": "package",
+      "path": "Microsoft.DotNet.InternalAbstractions/1.0.0",
+      "files": [
+        "Microsoft.DotNet.InternalAbstractions.1.0.0.nupkg.sha512",
+        "Microsoft.DotNet.InternalAbstractions.nuspec",
+        "lib/net451/Microsoft.DotNet.InternalAbstractions.dll",
+        "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll"
+      ]
+    },
     "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
       "sha512": "Bl6KYfbFSIW3QIRHAp931iR5h01qHjKghdpAtncwbzNUs0+IUZ+XfwkIU0sQsR33ufGvi3u4dZMIYYFysjpHAA==",
       "type": "package",
@@ -5349,16 +5330,6 @@
         "Microsoft.DotNet.ProjectModel.nuspec",
         "lib/net451/Microsoft.DotNet.ProjectModel.dll",
         "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll"
-      ]
-    },
-    "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121": {
-      "sha512": "dpGbzFkk6se2DLkKjyycSBNlFFzjZWc3gxrviVq6UyOJDDUBKuiOk0si41dkRtfIGHB7dcPBlZHXUiEC7tPhKQ==",
-      "type": "package",
-      "path": "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121",
-      "files": [
-        "Microsoft.DotNet.ProjectModel.Loader.1.0.0-preview2-003121.nupkg.sha512",
-        "Microsoft.DotNet.ProjectModel.Loader.nuspec",
-        "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll"
       ]
     },
     "Microsoft.EntityFrameworkCore/1.1.0": {
@@ -11419,11 +11390,13 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 1.1.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 1.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.1",
-      "Microsoft.AspNetCore.Razor.Tools >= 1.0.0-preview2-final",
+      "Microsoft.AspNetCore.Razor >= 1.1.0",
       "Microsoft.AspNetCore.Routing >= 1.1.0",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.1.0",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.1.0",
       "Microsoft.AspNetCore.StaticFiles >= 1.1.0",
+      "Microsoft.DotNet.InternalAbstractions >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 1.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.1.0",
       "Microsoft.EntityFrameworkCore.Tools >= 1.0.0-preview2-final",

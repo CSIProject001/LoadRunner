@@ -2,10 +2,6 @@
   "userSecretsId": "aspnet-CS-d496aaac-d798-4f28-a1c5-d9de0393faa0",
 
   "dependencies": {
-    "Microsoft.AspNetCore.Razor.Tools": {
-      "version": "1.0.0-preview2-final",
-      "type": "build"
-    },
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
@@ -41,7 +37,10 @@
     "Microsoft.AspNetCore.Mvc": "1.1.1",
     "Microsoft.AspNetCore.Routing": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0"
+    "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+    "Microsoft.AspNetCore.Razor": "1.1.0",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.0",
+    "Microsoft.EntityFrameworkCore": "1.1.0"
   },
 
   "tools": {

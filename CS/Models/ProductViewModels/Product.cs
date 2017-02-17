@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CS.Models.CandiSyrupViewModels
+namespace CS.Models.ProductViewModels
 {
     using System.ComponentModel.DataAnnotations;
 
     public class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public string Name { get; set; }
 
@@ -31,5 +31,8 @@ namespace CS.Models.CandiSyrupViewModels
         public int ReOrderLevel { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string ImageName { get; set; }
+
     }
 }

@@ -21,7 +21,8 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("ID")
+                    .HasAnnotation("MaxLength",256);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -32,7 +33,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("NormalizedName")
                         .HasAnnotation("MaxLength", 256);
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("NormalizedName")
                         .HasName("RoleNameIndex");
@@ -42,7 +43,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
@@ -52,7 +53,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("RoleId")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("RoleId");
 
@@ -61,7 +62,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
@@ -71,7 +72,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("UserId")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("UserId");
 
@@ -128,7 +129,7 @@ namespace CS.Data.Migrations
 
             modelBuilder.Entity("CS.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("ID");
 
                     b.Property<int>("AccessFailedCount");
 
@@ -163,7 +164,7 @@ namespace CS.Data.Migrations
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");

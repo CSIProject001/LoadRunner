@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ApplicationDbContext.cs" company="Microsoft">
 //   CandiSyrup
 // </copyright>
@@ -12,6 +10,7 @@
 namespace CS.Data
 {
     using CS.Models;
+    using CS.Models.ProductViewModels;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
@@ -22,6 +21,6 @@ namespace CS.Data
             : base(options)
         {
         }
-      
+     
     }
 }
