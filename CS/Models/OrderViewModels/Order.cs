@@ -12,6 +12,7 @@ namespace CS.Models.OrderViewModels
     using System;
     using System.Collections.Generic;
 
+    using CS.Models.DBModels;
     using CS.Models.ProductViewModels;
 
     /// <summary>
@@ -29,12 +30,14 @@ namespace CS.Models.OrderViewModels
 
         public DateTime ShippedDate { get; set; }
 
-        public int ShippingAddressId { get; set; }
+        public Address ShippingAddress { get; set; }
 
-        public int BillingAddressId { get; set; }
+        public  Address BillingAddress { get; set; }
 
         public decimal OrderTotal { get; set; }
+
         public decimal ShippingCost { get; set; }
+
         public decimal Tax { get; set; }
 
         public string PromotionCode { get; set; }

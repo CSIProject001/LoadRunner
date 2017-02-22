@@ -7,16 +7,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CS.Models.ProductViewModels
+namespace CS.Models.OrderViewModels
 {
+    using ProductViewModels;
+
     /// <summary>
     /// The shopping cart.
     /// </summary>
     public class ShoppingCart 
     {
-        public int CartId { get; set; }
+        public int ID { get; set; }
 
-        public int ProductId { get; set; }
+        public Product Item { get; set; }
 
         public decimal Quantity { get; set; }
 

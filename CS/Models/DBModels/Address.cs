@@ -9,6 +9,7 @@
 
 namespace CS.Models.DBModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,6 +17,15 @@ namespace CS.Models.DBModels
 
     public class Address
     {
+        public Dictionary<string, string> AddressCategories { get; } = new Dictionary<string, string>
+                {
+                    { "HOME", "Home" },
+                    { "BILLING", "Billing" },
+                    { "WORK", "work" },
+                    { "SHIPPING", "Shipping" },
+                    { "OTHER", "other" }
+                };
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 

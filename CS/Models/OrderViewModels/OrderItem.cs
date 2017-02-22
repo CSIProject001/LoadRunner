@@ -7,11 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CS.Models.ProductViewModels
+namespace CS.Models.OrderViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class OrderItem
     {
-        public int OrderId { get; set; }
+        [Key]
+        public int ID { get; set; }
 
         public int ProductId { get; set; }
 

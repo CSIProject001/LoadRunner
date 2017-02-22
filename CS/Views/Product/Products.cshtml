@@ -1,5 +1,10 @@
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Razor
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model IEnumerable<CS.Models.ProductViewModels.Product>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Products";
@@ -11,10 +16,7 @@
 
 <div class="container">
 <h2>Products</h2>
-    @{
-        @: @User.Identity.Name 
-
-    }
+    
 
 <p>@ViewData["UserName"]</p>
 <p>
