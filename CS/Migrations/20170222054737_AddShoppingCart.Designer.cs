@@ -8,9 +8,10 @@ using CS.Data;
 namespace CS.Migrations
 {
     [DbContext(typeof(CandiContext))]
-    partial class CandiContextModelSnapshot : ModelSnapshot
+    [Migration("20170222054737_AddShoppingCart")]
+    partial class AddShoppingCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

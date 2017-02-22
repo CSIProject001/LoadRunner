@@ -8,9 +8,10 @@ using CS.Data;
 namespace CS.Migrations
 {
     [DbContext(typeof(CandiContext))]
-    partial class CandiContextModelSnapshot : ModelSnapshot
+    [Migration("20170222053717_AddProductOrder_OrderItems")]
+    partial class AddProductOrder_OrderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -157,30 +158,6 @@ namespace CS.Migrations
                     b.ToTable("OrderItem");
                 });
 
-            modelBuilder.Entity("CS.Models.OrderViewModels.ShoppingCart", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Coupon");
-
-                    b.Property<decimal>("DiscountPrice");
-
-                    b.Property<int?>("ItemID");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<decimal>("Quantity");
-
-                    b.Property<decimal>("UnitPrice");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ItemID");
-
-                    b.ToTable("ShoppingCart");
-                });
-
             modelBuilder.Entity("CS.Models.ProductViewModels.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -239,13 +216,6 @@ namespace CS.Migrations
                     b.HasOne("CS.Models.OrderViewModels.Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("CS.Models.OrderViewModels.ShoppingCart", b =>
-                {
-                    b.HasOne("CS.Models.ProductViewModels.Product", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemID");
                 });
         }
     }
