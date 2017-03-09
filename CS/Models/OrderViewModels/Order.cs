@@ -13,7 +13,6 @@ namespace CS.Models.OrderViewModels
     using System.Collections.Generic;
 
     using CS.Models.DBModels;
-    using CS.Models.ProductViewModels;
 
     /// <summary>
     /// The order.

@@ -1,0 +1,48 @@
+@model CS.Models.OrderViewModels.ShoppingCart
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShoppingCart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Coupon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Coupon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiscountPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

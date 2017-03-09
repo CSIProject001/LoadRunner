@@ -1,15 +1,13 @@
+@using System.Threading.Tasks
 @using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Identity
-@using Microsoft.AspNetCore.Mvc.Razor
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model IEnumerable<CS.Models.ProductViewModels.Product>
 @inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Products";
-    
     var itemCount = 1;
+    var IsAdmin = HttpContext.User.IsInRole("Admin");
 }
 
 
@@ -20,7 +18,7 @@
 
 <p>@ViewData["UserName"]</p>
 <p>
-        <h4><a asp-action="Create"><i class="fa fa-plus"></i> Add New Product</a></h4>
+        <h4><a asp-action="Create"><i class="glyphicon glyphicon-arrow-down"></i> Add New Product</a></h4>
     </p>
     <hr />
     @{
@@ -34,7 +32,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading panel-title">
                         <b>@product.Name</b>
-                        <i class="fa fa-edit" style="font-size: 20px; color: red; float: right;"></i>
+                        <i class="glyphicon glyphicon-dashboard" style="font-size: 20px; color: red; float: right;"></i>
                     </div>
                     <div class="panel-body panel-primary">
                         <img src="@product.ImageName" class="img-responsive" alt="Image" asp-append-version="true"/>

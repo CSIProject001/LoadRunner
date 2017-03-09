@@ -7,9 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using CS.Models.ProductViewModels;
+
 namespace CS.Models.OrderViewModels
 {
-    using ProductViewModels;
+    using Models;
 
     /// <summary>
     /// The shopping cart.

@@ -1,0 +1,88 @@
+@using CS.Models.ProductViewModels
+@model CS.Models.ProductViewModels.Product
+
+@{
+    ViewData["Title"] = "Create";
+    var Categories = ViewData["ProductCategories"] as List<SelectListItem>;
+  
+}
+
+ <h2>Product</h2>
+<hr/>
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <!--<input asp-for="CategoryId" class="form-control" value="1"/>-->
+                <select asp-for="CategoryId" , asp-items="@Categories" class="form-control"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="QuantityPerUnit" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="QuantityPerUnit" class="form-control" />
+                <span asp-validation-for="QuantityPerUnit" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReOrderLevel" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReOrderLevel" class="form-control" />
+                <span asp-validation-for="ReOrderLevel" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UnitPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UnitPrice" class="form-control" />
+                <span asp-validation-for="UnitPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UnitsInOrder" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UnitsInOrder" class="form-control" />
+                <span asp-validation-for="UnitsInOrder" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UnitsInStock" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UnitsInStock" class="form-control" />
+                <span asp-validation-for="UnitsInStock" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="IsActive" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="IsActive" class="checkbox" checked="checked"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create Product" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+<a asp-action="Index">Back to List</a>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

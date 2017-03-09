@@ -68,27 +68,27 @@
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    this._logger.LogInformation(1, "User logged in.");
+                    _logger.LogInformation(1, "User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return this.RedirectToAction(nameof(this.SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction(nameof(this.SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
-                    this._logger.LogWarning(2, "User account locked out.");
-                    return this.View("Lockout");
+                    _logger.LogWarning(2, "User account locked out.");
+                    return View("Lockout");
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.View(model);
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return this.View(model);
+            return View(model);
         }
 
         //
@@ -97,8 +97,8 @@
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            this.ViewData["ReturnUrl"] = returnUrl;
-            return this.View();
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
         }
 
         //
@@ -108,14 +108,14 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            this.ViewData["ReturnUrl"] = returnUrl;
-            if (this.ModelState.IsValid)
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await this._userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    this._userManager.AddToRoleAsync(user, "Normal").Wait();
+                    _userManager.AddToRoleAsync(user, "Normal").Wait();
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
@@ -123,15 +123,15 @@
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.ID, code = code }, protocol: HttpContext.Request.Scheme);
                     // await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     // $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await this._signInManager.SignInAsync(user, isPersistent: false);
-                    this._logger.LogInformation(3, "User created a new account with password.");
-                    return this.RedirectToLocal(returnUrl);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(3, "User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
                 }
-                this.AddErrors(result);
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return this.View(model);
+            return View(model);
         }
 
         //
@@ -140,9 +140,9 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
-            await this._signInManager.SignOutAsync();
-            this._logger.LogInformation(4, "User logged out.");
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation(4, "User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         //
@@ -153,9 +153,9 @@
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             // Request a redirect to the external login provider.
-            var redirectUrl = this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
-            var properties = this._signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return this.Challenge(properties, provider);
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
         }
 
         //

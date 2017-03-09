@@ -1,0 +1,86 @@
+@model IEnumerable<CS.Models.ProductViewModels.Product>
+
+@{
+    ViewData["Title"] = "Products List";
+    var itemCount = 1;
+    var IsAdmin = Context.User.IsInRole("Admin");
+    const int NumItemsPerRow = 3;
+    }
+
+<h2>@ViewData["Title"]</h2>
+@if (IsAdmin)
+{
+    <p>
+        <a asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Add New </a>
+    </p>
+}
+<hr />
+@{
+    foreach (var product in Model)
+    {
+        if (itemCount == 1 || itemCount % NumItemsPerRow == 0)
+        {
+            @:<div class="row">
+            }
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-title" style="height: 50px;">
+                    <b>@product.Name</b>
+                    <div style="float: right;">
+                        <a asp-action="Details" asp-route-id="@product.ID" data-toggle="tooltip" title="Product Details">
+                            <i class="glyphicon glyphicon-list text-primary" style="font-size: 20px;"></i>
+                        </a>
+                        <a asp-action="Create" asp-controller="ShoppingCart" asp-route-id="@product.ID" data-toggle="tooltip" title="Add to Cart">
+                            <i class="glyphicon glyphicon-shopping-cart text-primary " style="font-size: 20px;"></i>
+                        </a>
+                        @if (IsAdmin)
+                        {
+                            <a asp-action="Edit" asp-route-id="@product.ID" data-toggle="tooltip" title="Edit Product">
+                                <i class="glyphicon glyphicon-edit text-primary" style="font-size: 20px; padding-left: 5px;"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@product.ID" data-toggle="tooltip" title="Delete Product">
+                                <i class="glyphicon glyphicon-trash text-primary" style="font-size: 20px;padding-left: 5px;"></i>
+                            </a>
+                        }
+                    </div>
+                </div>  
+                <div class="panel-body panel-primary">
+                    <img src="~/images/@product.ImageName" class="img-responsive" alt="Image" asp-append-version="true" />
+                </div>
+                <!--<div class="panel-body panel-primary">
+                    <div>@product.QuantityPerUnit</div>
+                    <div>@product.ReOrderLevel</div>
+                    <div>@product.UnitPrice</div>
+                    <div>@product.UnitsInOrder</div>
+                </div>-->
+                <!--<div class="panel-footer"></div>-->
+            </div>
+        </div>
+        if (itemCount % NumItemsPerRow == 0)
+        {
+            @:</div>
+        }
+        if(itemCount != Model.Count())
+        {
+            itemCount++;
+        }
+
+    }
+    var t = itemCount % NumItemsPerRow;
+    if (t == 1)
+    {
+        @:<div class="col-md-8">&nbsp;</div>
+        @:</div>
+
+    }
+    if (t == 2)
+    {
+        @:<div class="col-md-4">&nbsp;</div>
+        @:</div>
+    }
+}
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

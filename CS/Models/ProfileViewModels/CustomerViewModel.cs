@@ -38,7 +38,7 @@ namespace CS.Models.ProfileViewModels
         [Required]
         public string UserId { get; set; }
         [ForeignKey("UserId")]
-        public Models.ApplicationUser User { get; set; }
+        public CS.Models.ApplicationUser User { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
 

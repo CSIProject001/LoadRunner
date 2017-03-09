@@ -93,7 +93,7 @@ namespace CS.Controllers
                             Phones = new List<Phone> { p1, p2, p3, p4 }
                         };
             
-            return this.View(c);
+            return View(c);
         }
 
         [HttpPost]

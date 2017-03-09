@@ -1,0 +1,102 @@
+@model CS.Models.OrderViewModels.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CCAuthorizationCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CCAuthorizationCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderReceivedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderReceivedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PromotionAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PromotionAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PromotionCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PromotionCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingVia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingVia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingWeightTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShippingWeightTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackingCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TrackingCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

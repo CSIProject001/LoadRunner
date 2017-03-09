@@ -7,16 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+
+
 namespace CS.Controllers
 {
     using System.Collections.Generic;
 
-    using CS.Models;
-    using CS.Models.ProductViewModels;
-
+    using Models;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.AspNetCore.Mvc;
+    using Models.ProductViewModels;
 
     public class ProductController : Controller
     {
@@ -26,15 +26,17 @@ namespace CS.Controllers
 
 
 
-        public ProductController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public ProductController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager )
         {
-            this._signInManager = signInManager;
-            this._userManager = userManager;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            ViewData["UserName"] = this._userManager.GetUserName(this.HttpContext.User);
+            ViewData["UserName"] = _userManager.GetUserName(HttpContext.User);
+            ViewData["IsAdmin"] = HttpContext.User.IsInRole("Admin");
+
             var p = new List<Product>
                         {
                             new Product
@@ -143,7 +145,7 @@ namespace CS.Controllers
                                 },
                         };
 
-            return this.View("Products", p);
+            return View("Products", p);
         }
 
     }

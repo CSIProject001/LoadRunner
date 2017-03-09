@@ -91,8 +91,38 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-    </div>
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Mailing Address:</div>
+                        <div class="panel-body">
+                            CSI Confections, LLC<br />
+                            4182 Clemmons Road #234<br />
+                            Clemmons, NC 27012<br />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">About</div>
+                        <div class="panel-body">
+                            CSI Confections, LLC<br />
+                            4182 Clemmons Road #234<br />
+                            Clemmons, NC 27012<br />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-offset-4">&nbsp;</div>
+            </div>
 
+            <hr/>
+            <p>
+                &copy; 2017 - Candi Syrup
+            </p>
+        </footer>
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>
