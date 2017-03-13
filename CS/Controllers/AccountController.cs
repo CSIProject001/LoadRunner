@@ -1,4 +1,8 @@
-﻿namespace CS.Controllers
+﻿using CS.Data;
+using CS.Models.DBModels;
+using Microsoft.AspNetCore.Http;
+
+namespace CS.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -26,6 +30,7 @@
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly CandiContext _candiContext;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -33,7 +38,8 @@
             RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            CandiContext candiContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -41,6 +47,7 @@
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _candiContext = candiContext;
         }
 
         //
@@ -60,6 +67,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+          
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -124,6 +132,14 @@
                     // await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     // $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    
+                    var c = new Customer
+                    {
+                        UserId = user.Id
+                    };
+
+                    _candiContext.Customers.Add(c);
+                    _candiContext.SaveChanges();
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }

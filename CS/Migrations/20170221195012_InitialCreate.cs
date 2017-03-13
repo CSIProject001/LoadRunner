@@ -1,10 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="20170221195012_InitialCreate.cs" company="CandiSyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the InitialCreate type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS.Migrations
 {
+    using System;
+    using System.Collections.Generic;
+
+    using CS.Data.Migrations;
+
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
+    /// <summary>
+    /// The Migration - Initial Creation
+    /// </summary>
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

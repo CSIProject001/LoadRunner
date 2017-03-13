@@ -7,6 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using CS.Models;
+using Microsoft.AspNetCore.Identity;
+
 namespace CS.Controllers
 {
     using System.Linq;
@@ -21,10 +24,12 @@ namespace CS.Controllers
     public class CustomersController : Controller
     {
         private readonly CandiContext _context;
+        private UserManager<ApplicationUser> _userManager { get; set; }
 
-        public CustomersController(CandiContext context)
+        public CustomersController(CandiContext context,UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Customers
@@ -35,14 +40,15 @@ namespace CS.Controllers
         }
 
         // GET: Customers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string  id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+          
+            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.ID == id);
             if (customer == null)
             {
                 return NotFound();
@@ -54,6 +60,7 @@ namespace CS.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
+            
             return View();
         }
 
@@ -73,15 +80,28 @@ namespace CS.Controllers
             return View(customer);
         }
 
+        //public async Task<IActionResult> Edit(string userid)
+        //{
+        //    var customer = _context.Customers.SingleOrDefaultAsync(m => m.UserId == userid);
+
+
+        //    if (customer == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(customer);
+
+        //}
+
         // GET: Customers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.ID == id);
+            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
             if (customer == null)
             {
                 return NotFound();

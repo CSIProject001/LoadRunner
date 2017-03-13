@@ -10,7 +10,7 @@
 namespace CS.Data
 {
     using CS.Models;
-    using CS.Models.ProductViewModels;
+    using CS.Models.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

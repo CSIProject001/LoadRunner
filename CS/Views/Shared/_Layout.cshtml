@@ -7,7 +7,8 @@
     <title>@ViewData["Title"] - CS</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />-->
+        <link rel="stylesheet" href="~/css/flatly/bootstrap.min.css"/>
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
@@ -50,29 +51,31 @@
     <div class="container body-content">
         <div class="jumbotron siteJumbotron">
             <h1>CANDI SYRUP</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+        <nav class="navbar navbar-default">
+            <div class="col-md-12">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <i class="fa fa-bars csiconcolor"></i>
                     </button>
-                    <a class="navbar-brand csinavlogo" style="padding: 5px" href="/">
+                    <a class="navbar-brand csinavlogo"  href="/">
                         <img src="~/images/Fleur.jpg" alt="Logo" style="height: 40px; width: 40px" />
                     </a>
                 </div>
-                <div class="collapse navbar-collapse csinavfontsize" id="myNavbar">
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home csiconcolor"></i> Home</a></li>
-                        <li><a asp-area="" asp-controller="Product" asp-action="Index"><i class="fa fa-gift csiconcolor"></i> Products</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-hand-o-right csiconcolor"></i> About Us</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-gift fa-address-book csiconcolor"></i> Contact Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> Home</a></li>
+                        <li><a asp-area="" asp-controller="Products" asp-action="Index"><i class="fa fa-gift"></i> Products</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-hand-o-right"></i> About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-gift fa-address-book"></i> Contact Us</a></li>
                     </ul>
+                    @await Html.PartialAsync("NavbarShoppingCart")
                     @await Html.PartialAsync("_LoginPartial")
+                    
                 </div>
             </div>
         </nav>
+
     </div>
     <div class="container">
         <!--<ol class="breadcrumb">
@@ -93,31 +96,6 @@
         @RenderBody()
         <hr />
         <footer>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">Mailing Address:</div>
-                        <div class="panel-body">
-                            CSI Confections, LLC<br />
-                            4182 Clemmons Road #234<br />
-                            Clemmons, NC 27012<br />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">About</div>
-                        <div class="panel-body">
-                            CSI Confections, LLC<br />
-                            4182 Clemmons Road #234<br />
-                            Clemmons, NC 27012<br />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-offset-4">&nbsp;</div>
-            </div>
-
-            <hr/>
             <p>
                 &copy; 2017 - Candi Syrup
             </p>

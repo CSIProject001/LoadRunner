@@ -7,6 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Linq;
+using System.Threading;
+using CS.Models.DBModels;
+
 namespace CS
 {
     using System;
@@ -44,7 +48,7 @@ namespace CS
             }
 
             builder.AddEnvironmentVariables();
-            this.Configuration = builder.Build();
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -54,10 +58,10 @@ namespace CS
         {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<CandiContext>(
-                options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -111,6 +115,9 @@ namespace CS
             
             var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
+           
+            
+
             var roles = new[] { "Admin", "Manager", "Normal" };
             IdentityResult roleResult;
             foreach (var role in roles)
@@ -152,9 +159,18 @@ namespace CS
                 }
                 else
                 {
-                    await userManager.AddToRoleAsync(u, "Admin");
+                       await userManager.AddToRoleAsync(u, "Admin");
                 }
-            }
+
+                /*
+                var c = new Customer {UserId = u.Id};
+               
+                if (cc.Customers.Any(m => m.UserId == c.UserId)) continue;
+                cc.Customers.Add(c);
+                cc.SaveChanges();
+                */        
+    }
+
         }
     }
 }

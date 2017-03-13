@@ -7,46 +7,48 @@
     const int NumItemsPerRow = 3;
     }
 
-<h2>@ViewData["Title"]</h2>
 @if (IsAdmin)
 {
     <p>
-        <a asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Add New </a>
+        <a asp-action="Create" class="text-capitalize text-primary" style="font-size: large;font-weight: bold"><i class="fa fa-plus-square-o"></i>&nbsp;Add New </a>
     </p>
+    <hr />
 }
-<hr />
+
 @{
     foreach (var product in Model)
     {
-        if (itemCount == 1 || itemCount % NumItemsPerRow == 0)
+        if (itemCount == 1 || itemCount % NumItemsPerRow == 1)
         {
             @:<div class="row">
             }
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading panel-title" style="height: 50px;">
+                <div class="panel-heading panel-title">
                     <b>@product.Name</b>
                     <div style="float: right;">
-                        <a asp-action="Details" asp-route-id="@product.ID" data-toggle="tooltip" title="Product Details">
-                            <i class="glyphicon glyphicon-list text-primary" style="font-size: 20px;"></i>
+                        <a asp-action="Details" asp-route-id="@product.ID" data-toggle="tooltip" title="Product Details" style="font-size: 25px;">
+                            <i class="fa fa-info-circle"></i>
                         </a>
-                        <a asp-action="Create" asp-controller="ShoppingCart" asp-route-id="@product.ID" data-toggle="tooltip" title="Add to Cart">
-                            <i class="glyphicon glyphicon-shopping-cart text-primary " style="font-size: 20px;"></i>
+                        <a asp-action="Create" asp-controller="ShoppingCart" asp-route-id="@product.ID" data-toggle="tooltip" title="Add to Cart" style="font-size: 25px;">
+                            <i class="fa fa-shopping-cart"></i>
                         </a>
                         @if (IsAdmin)
                         {
-                            <a asp-action="Edit" asp-route-id="@product.ID" data-toggle="tooltip" title="Edit Product">
-                                <i class="glyphicon glyphicon-edit text-primary" style="font-size: 20px; padding-left: 5px;"></i>
+                            <a asp-action="Edit" asp-route-id="@product.ID" data-toggle="tooltip" title="Edit Product" style="font-size: 25px;">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 5px;"></i>
                             </a>
-                            <a asp-action="Delete" asp-route-id="@product.ID" data-toggle="tooltip" title="Delete Product">
-                                <i class="glyphicon glyphicon-trash text-primary" style="font-size: 20px;padding-left: 5px;"></i>
+                            <a asp-action="Delete" asp-route-id="@product.ID" data-toggle="tooltip" title="Delete Product" style="font-size: 25px;">
+                                <i class="fa fa-trash-o" style="padding-left: 5px;"></i>
                             </a>
                         }
                     </div>
                 </div>  
-                <div class="panel-body panel-primary">
+                <div class="panel-body">
                     <img src="~/images/@product.ImageName" class="img-responsive" alt="Image" asp-append-version="true" />
                 </div>
+                <div class="panel-footer">&nbsp;
+                      </div>
                 <!--<div class="panel-body panel-primary">
                     <div>@product.QuantityPerUnit</div>
                     <div>@product.ReOrderLevel</div>
@@ -74,10 +76,11 @@
 
     }
     if (t == 2)
-    {
+    {   
         @:<div class="col-md-4">&nbsp;</div>
         @:</div>
     }
+
 }
 <script>
     $(document).ready(function () {

@@ -87,7 +87,7 @@ namespace CS.Migrations
 
             modelBuilder.Entity("CS.Models.OrderViewModels.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("BillingAddressID");
@@ -122,7 +122,7 @@ namespace CS.Migrations
 
                     b.Property<string>("TrackingCode");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.HasIndex("BillingAddressID");
 
@@ -181,7 +181,7 @@ namespace CS.Migrations
                     b.ToTable("ShoppingCart");
                 });
 
-            modelBuilder.Entity("CS.Models.ProductViewModels.Product", b =>
+            modelBuilder.Entity("CS.Models.Models.Product", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -243,7 +243,7 @@ namespace CS.Migrations
 
             modelBuilder.Entity("CS.Models.OrderViewModels.ShoppingCart", b =>
                 {
-                    b.HasOne("CS.Models.ProductViewModels.Product", "Item")
+                    b.HasOne("CS.Models.Models.Product", "Item")
                         .WithMany()
                         .HasForeignKey("ItemID");
                 });

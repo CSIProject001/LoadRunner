@@ -1,36 +1,29 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CS.Data;
-using CS.Models;
 using CS.Models.Models;
 using CS.Models.ProductViewModels;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CS.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly CandiContext _context;
-        private UserManager<ApplicationUser> _userManager { get; set; }
-        private SignInManager<ApplicationUser> _signInManager { get; set; }
 
-        public ProductsController(CandiContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager  )
+        public ProductsController(CandiContext context  )
         {
             _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
+
         }
 
         // GET: Products
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            ViewData["UserName"] = _userManager.GetUserName(HttpContext.User);
-            ViewData["IsAdmin"] = HttpContext.User.IsInRole("Admin");
             return View(await _context.Products.ToListAsync());
         }
 
