@@ -1,17 +1,13 @@
-﻿using CS.Data;
-using CS.Models.DBModels;
-using Microsoft.AspNetCore.Http;
+﻿
 
 namespace CS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using CS.Models;
-    using CS.Models.AccountViewModels;
+    using Models;
+    using Models.AccountViewModels;
     using CS.Services;
 
     using Microsoft.AspNetCore.Authorization;
@@ -20,6 +16,8 @@ namespace CS.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.Extensions.Logging;
+    using Data;
+    using Models.DBModels;
 
     [Authorize]
     public class AccountController : Controller

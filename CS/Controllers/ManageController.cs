@@ -9,13 +9,11 @@
 
 namespace CS.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using CS.Models;
-    using CS.Models.ManageViewModels;
+    using Models;
+    using Models.ManageViewModels;
     using CS.Services;
 
     using Microsoft.AspNetCore.Authorization;

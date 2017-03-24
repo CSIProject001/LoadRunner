@@ -7,10 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Linq;
-using System.Threading;
-using CS.Models.DBModels;
-
 namespace CS
 {
     using System;
@@ -18,9 +14,7 @@ namespace CS
     using System.Threading.Tasks;
 
     using CS.Data;
-    using CS.Data.Migrations;
-    using CS.Models;
-    using CS.Models.ProfileViewModels;
+    using Models;
     using CS.Services;
 
     using Microsoft.AspNetCore.Builder;
@@ -68,6 +62,13 @@ namespace CS
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession(
+                options =>
+                    {
+                        options.IdleTimeout = TimeSpan.FromMinutes(30);
+                        options.CookieHttpOnly = true;
+                    });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -96,27 +97,24 @@ namespace CS
             app.UseStaticFiles();
 
             app.UseIdentity();
+            app.UseSession();
 
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            var serviceProvider = app.ApplicationServices.GetService<IServiceProvider>();
-            CreateRolesandUsers(serviceProvider).Wait();
-            
+
+            /* var serviceProvider = app.ApplicationServices.GetService<IServiceProvider>();
+             CreateRolesandUsers(serviceProvider).Wait(); */
         }
 
-        
         private async Task CreateRolesandUsers(IServiceProvider provider)
         {
             
             var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
-           
-            
 
             var roles = new[] { "Admin", "Manager", "Normal" };
             IdentityResult roleResult;
@@ -128,7 +126,8 @@ namespace CS
                     roleResult = await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
-            //await roleManager.DeleteAsync(new IdentityRole("Administrator"));
+
+            /* await roleManager.DeleteAsync(new IdentityRole("Administrator")); */
 
             var adminUsers = new List<ApplicationUser>
                                  {
@@ -163,7 +162,7 @@ namespace CS
                 }
 
                 /*
-                var c = new Customer {UserId = u.Id};
+                var c = new Customer {UserId = u.ID};
                
                 if (cc.Customers.Any(m => m.UserId == c.UserId)) continue;
                 cc.Customers.Add(c);

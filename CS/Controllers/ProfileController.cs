@@ -13,8 +13,8 @@ namespace CS.Controllers
 {
     using System.Collections.Generic;
 
-    using CS.Models.DBModels;
-    using CS.Models.ProfileViewModels;
+    using Models.DBModels;
+    using Models.ProfileViewModels;
 
     using Microsoft.AspNetCore.Mvc;
 

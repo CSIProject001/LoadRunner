@@ -67,8 +67,8 @@ namespace CS.Models.ProductViewModels
         [StringLength(500, ErrorMessage = "{0} must be less than {1} characters")]
         public string ImageName { get; set; }
 
-        //[Display(Name = "Description")]
-        //[StringLength(500, ErrorMessage = "{0} must be less than {1} characters")]
-        //public string Description { get; set; }
+        [Display(Name = "Description")]
+        [StringLength(500, ErrorMessage = "{0} must be less than {1} characters")]
+        public string Description { get; set; }
     }
 }

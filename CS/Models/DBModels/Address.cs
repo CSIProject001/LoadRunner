@@ -13,8 +13,6 @@ namespace CS.Models.DBModels
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Microsoft.EntityFrameworkCore.Migrations.Operations;
-
     public class Address
     {
         public Dictionary<string, string> AddressCategories { get; } = new Dictionary<string, string>

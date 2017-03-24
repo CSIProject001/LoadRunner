@@ -7,29 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using CS.Models.ProductViewModels;
-
 namespace CS.Models.OrderViewModels
 {
-    using Models;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// The shopping cart.
     /// </summary>
     public class ShoppingCart 
     {
+        [Required]
+        [Key]
         public int ID { get; set; }
 
-        public Product Item { get; set; }
+        [StringLength(50)]
+        public string UserId { get; set; }
 
-        public decimal Quantity { get; set; }
-
-        public decimal UnitPrice { get; set; }
-
-        public decimal Price { get; set; }
-
-        public string Coupon { get; set; }
-
-        public decimal DiscountPrice { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
     }
 }

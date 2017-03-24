@@ -7,19 +7,35 @@
     <title>@ViewData["Title"] - CS</title>
 
     <environment names="Development">
-        <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />-->
-        <link rel="stylesheet" href="~/css/flatly/bootstrap.min.css"/>
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
-        <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+       @* <!-- Material Design --------------------------------------------->
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <!-- Material Design fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Bootstrap Material Design -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
+        *@
+        <!-----------------End Material Design ------------------------>
+        
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <!--<link rel="stylesheet" href="~/css/flatly/bootstrap.min.css"/>-->
+
+        <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"/>
+        <!--<link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">-->
+        <link href="~/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="~/css/site.css"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />        
         <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
@@ -52,7 +68,7 @@
         <div class="jumbotron siteJumbotron">
             <h1>CANDI SYRUP</h1>
         </div>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse csnavbarinversebg" >
             <div class="col-md-12">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -75,32 +91,19 @@
                 </div>
             </div>
         </nav>
-
     </div>
-    <div class="container">
-        <!--<ol class="breadcrumb">
-            <li><a href="#">Home</a><i class="fa fa-caret-right" style="font-size: 30px;"></i></li>
-            <li><a href="#">Library</a><i class="fa fa-caret-right"></i></li>
-            <li class="active">Data</li>
-        </ol>
-        <ul class="crumbs">
-            <li><a href="#">Cart</a></li>
-            <li><a href="#">Pay</a></li>
-            <li><a href="#">Final Confirmation</a></li>
-        </ul>
+<div class="container body-content">
+    @RenderBody()
+    <hr style="border-color: orange"/>
+    <footer>
+        <p>
+            &copy; 2017 - Candi Syrup
+        </p>
+    </footer>
+</div>
 
 
-            -->
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>
-                &copy; 2017 - Candi Syrup
-            </p>
-        </footer>
-    </div>
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
+
 </body>
 </html>

@@ -1,15 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CS.Data;
-using CS.Models.DBModels;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AddressesController.cs" company="CandiSyrup">
+//   VirtualHeights LLC
+// </copyright>
+// <summary>
+//   Defines the AddressesController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace CS.Controllers
 {
+    /*
+     * TODO
+     * Clean up Address addition & all methods to Profile or Customer or Order
+     * Add Routes that will get the pages to correct location
+     */
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using CS.Data;
+    using Models.DBModels;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
     public class AddressesController : Controller
     {
         private readonly CandiContext _context;

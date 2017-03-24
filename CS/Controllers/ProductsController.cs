@@ -1,20 +1,24 @@
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CS.Data;
-using CS.Models.Models;
-using CS.Models.ProductViewModels;
-using Microsoft.AspNetCore.Authorization;
-
 namespace CS.Controllers
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using CS.Data;
+    using CS.Infrastructure;
+    using CS.Models.Models;
+    using CS.Models.ProductViewModels;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
     [Authorize]
     public class ProductsController : Controller
     {
         private readonly CandiContext _context;
 
-        public ProductsController(CandiContext context  )
+        public ProductsController(CandiContext context)
         {
             _context = context;
 
@@ -27,6 +31,11 @@ namespace CS.Controllers
             return View(await _context.Products.ToListAsync());
         }
 
+        public IActionResult AddItemToCart(int id, int quantity = 1)
+        {
+            Globals.UpdateCartItems(this._context, Request.HttpContext, id, quantity);
+            return RedirectToAction("Index");
+        }
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -57,7 +66,7 @@ namespace CS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,CategoryId,ImageName,IsActive,Name,QuantityPerUnit,ReOrderLevel,UnitPrice,UnitsInOrder,UnitsInStock")] Product product)
+        public async Task<IActionResult> Create([Bind("ID,Description,CategoryId,ImageName,IsActive,Name,QuantityPerUnit,ReOrderLevel,UnitPrice,UnitsInOrder,UnitsInStock")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +78,7 @@ namespace CS.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id,string returnurl)
         {
             ViewData["ProductCategories"] = GlobalCategories.ProductCategories;
             if (id == null)
@@ -90,7 +99,7 @@ namespace CS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CategoryId,ImageName,IsActive,Name,QuantityPerUnit,ReOrderLevel,UnitPrice,UnitsInOrder,UnitsInStock")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Description,CategoryId,ImageName,IsActive,Name,QuantityPerUnit,ReOrderLevel,UnitPrice,UnitsInOrder,UnitsInStock")] Product product)
         {
            
             if (id != product.ID)

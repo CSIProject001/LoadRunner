@@ -9,8 +9,6 @@
 
 namespace CS.Models.DBModels
 {
-    using System.Collections.Generic;
-
     public class Phone
     {
         public int ID { get; set; }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore;
-
-namespace CS.Data
+﻿namespace CS.Data
 {
-    using CS.Models.DBModels;
-    using CS.Models.OrderViewModels;
-    using CS.Models.ProductViewModels;
+    using Models.DBModels;
+    using Models.OrderViewModels;
+    using Models.ProductViewModels;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +14,20 @@ namespace CS.Data
         }
 
         public DbSet<Address> Addresses { get; set; }
+
         public DbSet<Customer> Customers { get; set; }
+
         public DbSet<Phone> Phones { get; set; }
+
         public DbSet<Order> Orders { get; set; }
+
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<ShoppingCart> Carts { get; set; }
+
+        public DbSet<ShoppingCart> Cart { get; set; }
+
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +39,7 @@ namespace CS.Data
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
             modelBuilder.Entity<ShoppingCart>().ToTable("ShoppingCart");
+            modelBuilder.Entity<CartItem>().ToTable("CartItem");
         }
     }
 }

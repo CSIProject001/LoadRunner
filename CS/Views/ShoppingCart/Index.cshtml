@@ -1,59 +1,75 @@
-@model IEnumerable<CS.Models.OrderViewModels.ShoppingCart>
+@using CS.Infrastructure
+@model IEnumerable<CS.Models.OrderViewModels.CartItem>
 
 @{
     ViewData["Title"] = "Index";
+    var rownum = 1;
+    var colors = new[] { "info","active", "warning"  };
 }
 
-<h2>Index</h2>
+<h2>Shopping Cart</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Coupon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscountPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Coupon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscountPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+@{
+    var cartItems = Model;
 }
-    </tbody>
-</table>
+
+@{
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="info">
+                    <th>Item Number</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var cartItem in cartItems)
+            {
+
+                <tr class="@colors[rownum % 3]">
+                    <td>
+                        @rownum
+                    </td>
+
+                    <td>
+                        @cartItem.Item.Name
+                    </td>
+                    <td>
+
+                        <form method="post" asp-controller="ShoppingCart" class="form-inline">
+                            <input type="number" name="quantity" id="@($"rownum_{rownum}")" class="form-control cscartitemquantity" asp-for="@cartItem.Quantity" />
+                            <span asp-validation-for="@cartItem.Quantity" class="text-danger"></span>
+                            <button type="submit" class="btn btn-primary csupdateqtybtn" data-toggle="tooltip" title="Update Total" asp-action="UpdateTotal" asp-route-id="@cartItem.Item.ID">Update Total</button>
+
+
+                        </form>
+                    </td>
+                    <td>
+                        @cartItem.Item.UnitPrice
+                    </td>
+                    <td>
+                        @(cartItem.Item.UnitPrice * cartItem.Quantity)
+                    </td>
+                    <td>
+                        <form method="post" asp-controller="ShoppingCart" asp-action="RemoveItemFromCart" asp-route-id="@cartItem.Item.ID" class="form-inline">
+                            <button type="submit" class="btn btn-primary csupdateqtybtn" data-toggle="tooltip" title="Remove item from Cart" >Remove Item</button>
+                        </form>
+                    </td>
+                </tr>
+                    ++rownum;
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+}
+<a asp-controller="Products" asp-action="Index"><i class="fa fa-arrow-circle-left"> Continue Shopping</i></a>
+
+

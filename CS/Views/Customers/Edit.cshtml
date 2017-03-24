@@ -1,64 +1,99 @@
-@model CS.Models.DBModels.Customer
-
+@using CS.Models.DBModels
+@model Customer
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = string.Format("Update {0}'s Profile", Model.FirstName);
 }
+<form asp-controller="Customers" asp-action="Edit" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <h2>@ViewData["Title"].</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-9">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DOB" class="col-md-2 control-label">Date of Birth</label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="DOB" class="form-control" />
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
 
-<h2>Edit</h2>
+        </div>
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>Customer</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
-        <div class="form-group">
-            <label asp-for="DOB" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DOB" class="form-control" />
-                <span asp-validation-for="DOB" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FirstName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Organization" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Organization" class="form-control" />
-                <span asp-validation-for="Organization" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="col-md-3" style="border-left: solid 1px orange">
+            <div class="container-fluid">
+                @{
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                Phones
+                                <a asp-controller="Phones" asp-action="Create" asp-route-returnurl="@ViewData["ReturnUrl"]"></a><i class="fa fa-edit" style="float: right"></i>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var phone in Model.Phones)
+                                {
+                                    <span>@phone.Category : @phone.PhoneNumber</span>
+                                }
+                                <a class="btn btn-link" style="padding-top: 10px; margin-left: 5px;"asp-controller="Phones" asp-action="Create" asp-route-returnurl="@ViewData["ReturnUrl"]"><i class="fa fa-plus"></i> Add New Phone</a>
+                            </div>
+                        </div>
+                    
+                }
+               
             </div>
         </div>
     </div>
+
+    <hr style="border-color:orange" />
+    <a class="btn btn-link" asp-controller="Addresses" asp-action="Create" asp-route-returnurl="@ViewData["ReturnUrl"]"><i class="fa fa-plus"></i> Add New Address</a>
+    <div class="row">
+        @{
+
+                foreach (var address in Model.Addresses)
+                {
+
+                    <div class="col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">@address.Category <i class="fa fa-edit" style="float: right; font-size: 16px;"></i>
+                            </div>
+                            <div class="panel-body">
+                                @address.Line1
+
+                                @if (address.Line2 != null)
+                                {
+                                    @address.Line2
+                                }
+                                <div>
+                                    @address.City,
+                                    @address.State
+                                    @address.Zip
+                                    <div>@address.Country</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+        }
+    </div>
 </form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

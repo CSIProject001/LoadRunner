@@ -9,12 +9,8 @@
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
       
         <ul class="nav navbar-nav navbar-right">
-            <!--<li>
-                <a asp-area="" asp-controller="Customers" asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)" title="Manage"><i class="fa fa-user"></i> @UserManager.GetUserName(User)!</a>
-                
-            </li>-->
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off <i class="fa fa-sign-out"></i> </button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link cslogofflink">Log off <i class="fa fa-sign-out"></i> </button>
             </li>
         </ul>
     </form>
@@ -22,7 +18,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-controller="Customers" asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)"><i class="fa fa-user"></i>  @UserManager.GetUserName(User)!</a>
-                <!--<button type="submit" class="btn btn-link navbar-btn navbar-link"><i class="fa fa-user"></i> @UserManager.GetUserName(User)!</button>-->
+                
             </li>
         </ul>
     </form>
@@ -32,7 +28,7 @@ else
 {
     <ul class="nav navbar-nav navbar-right csinavfontsize">
         <li><a asp-area="" asp-controller="Account" asp-action="Register"><i class="fa fa-address-card"></i> Register</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in"></i> Log in</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" class="cslogonlink"><i class="fa fa-sign-in"></i> Log in</a></li>
     </ul>
 }
 

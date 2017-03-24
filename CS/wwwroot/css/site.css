@@ -1,6 +1,5 @@
 ﻿body {
-    background-color: lightblue;
-    font-family: "Roboto", Helvetica, Verdana, Helvetica;
+    background-color: white;
 }
 
 /* Wrapping element */
@@ -84,17 +83,15 @@ textarea {
     
 }
 .siteJumbotron {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: transparent;
-    padding: 5px;
-    text-align: center;
+   text-align: center;
+    margin-bottom: 2px;
+    background-color:cornsilk;
 }
-.siteJumbotron H1 {
+/*.siteJumbotron H1 {
     font-family: "Arima Madurai", cursive;
     font-weight: 900;
-    color: #fff;
-}
+    color:black;
+}*/
 
 .crumbs {
     list-style: none;
@@ -159,4 +156,69 @@ textarea {
 }
 .csinavlogo {
     font-size: 30px;
+    padding-left:0px;
+    padding-top: 5px;
+}
+.cswellprimary {
+    background:lightblue;
+    margin-bottom: 10px;
+
+    
+}
+.cswellbody {
+    background:aliceblue;
+    margin: 0px;  
+}
+.roundedcornerleaf {
+    
+    padding: 30px; 
+}
+.roundedleftcornerleaf {
+    
+    padding: 50px 30px;
+}
+.padhomecontent {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.csnavbarprimary {   
+    background: transparent;
+}
+.csproductsummaryPanelHeading {
+    height: 65px;
+    background-color: yellow;
+}
+.panel-footer.csproductsummaryPanelFooter {
+    height: 65px;
+    background-color:#add8e6;
+    color: black;
+}
+.panel.cspanelheaderprimary {
+    background-color: darkslategrey
+}
+.form-control.cscartitemquantity {
+    height: 30px; width: 80px;
+}
+.csupdateqtybtn {
+    height: 30px; margin: 0px;padding: 0px 10px;
+}
+.navbar-inverse.csnavbarinversebg {
+    background-color:darkolivegreen;
+    border-color: transparent;
+    
+}
+#myNavbar li a {
+    color:white;
+}
+#myNavbar li a:hover {
+    color:yellow;
+}
+.navbar-link.cslogofflink {
+    color: greenyellow;  
+}
+#myNavbar li a.cslogonlink {
+    color:lawngreen;  
+}
+#myNavbar li a.cslogonlink:hover {
+    color:aqua;  
 }

@@ -13,7 +13,7 @@ namespace CS
     using System.Threading.Tasks;
 
     using CS.Data;
-    using CS.Models.OrderViewModels;
+    using Models.OrderViewModels;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;

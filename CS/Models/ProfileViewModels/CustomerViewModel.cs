@@ -14,7 +14,7 @@ namespace CS.Models.ProfileViewModels
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using CS.Models.DBModels;
+    using DBModels;
 
     public class CustomerViewModel
     {
@@ -38,7 +38,7 @@ namespace CS.Models.ProfileViewModels
         [Required]
         public string UserId { get; set; }
         [ForeignKey("UserId")]
-        public CS.Models.ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public ICollection<Address> Addresses { get; set; }
 

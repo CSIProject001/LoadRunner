@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Products List";
-    var itemCount = 1;
+    var itemCount = 0;
     var IsAdmin = Context.User.IsInRole("Admin");
     const int NumItemsPerRow = 3;
+    
     }
 
 @if (IsAdmin)
@@ -16,72 +17,43 @@
 }
 
 @{
-    foreach (var product in Model)
+    for (int i = 0; i < Model.Count(); i++)
     {
-        if (itemCount == 1 || itemCount % NumItemsPerRow == 1)
-        {
-            @:<div class="row">
-            }
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading panel-title">
-                    <b>@product.Name</b>
-                    <div style="float: right;">
-                        <a asp-action="Details" asp-route-id="@product.ID" data-toggle="tooltip" title="Product Details" style="font-size: 25px;">
-                            <i class="fa fa-info-circle"></i>
-                        </a>
-                        <a asp-action="Create" asp-controller="ShoppingCart" asp-route-id="@product.ID" data-toggle="tooltip" title="Add to Cart" style="font-size: 25px;">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                        @if (IsAdmin)
-                        {
-                            <a asp-action="Edit" asp-route-id="@product.ID" data-toggle="tooltip" title="Edit Product" style="font-size: 25px;">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 5px;"></i>
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@product.ID" data-toggle="tooltip" title="Delete Product" style="font-size: 25px;">
-                                <i class="fa fa-trash-o" style="padding-left: 5px;"></i>
-                            </a>
-                        }
-                    </div>
-                </div>  
-                <div class="panel-body">
-                    <img src="~/images/@product.ImageName" class="img-responsive" alt="Image" asp-append-version="true" />
-                </div>
-                <div class="panel-footer">&nbsp;
-                      </div>
-                <!--<div class="panel-body panel-primary">
-                    <div>@product.QuantityPerUnit</div>
-                    <div>@product.ReOrderLevel</div>
-                    <div>@product.UnitPrice</div>
-                    <div>@product.UnitsInOrder</div>
-                </div>-->
-                <!--<div class="panel-footer"></div>-->
+        var p = Model.ElementAt(i);
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("ProductSummary", p)
             </div>
+            <div class="col-md-4">
+                @if (i + 1 < Model.Count())
+                {
+                    p = Model.ElementAt(i + 1);
+                    @Html.Partial("ProductSummary", p)
+                }
+                else
+                {
+                    @:&nbsp;
+                }
+            </div>
+           @{ i++;}
+            <div class="col-md-4">
+                @if (i + 1 < Model.Count())
+                {
+                    p = Model.ElementAt(i + 1);
+                    @Html.Partial("ProductSummary", p)
+                }
+                else
+                {
+                    @:&nbsp;
+                }
+                
+            </div>
+            @{ i++; }   
         </div>
-        if (itemCount % NumItemsPerRow == 0)
-        {
-            @:</div>
-        }
-        if(itemCount != Model.Count())
-        {
-            itemCount++;
-        }
-
+       
     }
-    var t = itemCount % NumItemsPerRow;
-    if (t == 1)
-    {
-        @:<div class="col-md-8">&nbsp;</div>
-        @:</div>
-
-    }
-    if (t == 2)
-    {   
-        @:<div class="col-md-4">&nbsp;</div>
-        @:</div>
-    }
-
 }
+
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();

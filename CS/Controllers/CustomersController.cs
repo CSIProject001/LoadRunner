@@ -12,42 +12,47 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CS.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using CS.Data;
-    using CS.Models.DBModels;
+    using Data;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
+    using Models.DBModels;
+
+    [Authorize]
     public class CustomersController : Controller
     {
-        private readonly CandiContext _context;
-        private UserManager<ApplicationUser> _userManager { get; set; }
+        private readonly CandiContext context;
 
-        public CustomersController(CandiContext context,UserManager<ApplicationUser> userManager)
+        private UserManager<ApplicationUser> UserManager { get; set; }
+
+        public CustomersController(CandiContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;
-            _userManager = userManager;
+            this.context = context;
+            this.UserManager = userManager;
         }
 
         // GET: Customers
         public async Task<IActionResult> Index()
         {
             
-            return View(await _context.Customers.ToListAsync());
+            return View(await context.Customers.ToListAsync());
         }
 
         // GET: Customers/Details/5
-        public async Task<IActionResult> Details(string  id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
           
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
+            var customer = await this.context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
 
             if (customer == null)
             {
@@ -73,25 +78,13 @@ namespace CS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
-                await _context.SaveChangesAsync();
+                this.context.Add(customer);
+                await this.context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(customer);
         }
 
-        //public async Task<IActionResult> Edit(string userid)
-        //{
-        //    var customer = _context.Customers.SingleOrDefaultAsync(m => m.UserId == userid);
-
-
-        //    if (customer == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(customer);
-
-        //}
 
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(string id)
@@ -101,10 +94,18 @@ namespace CS.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
+            var customer = await this.context.Customers.SingleOrDefaultAsync(m => m.UserId == id);
             if (customer == null)
             {
                 return NotFound();
+            }
+            if (customer.Phones == null)
+            {
+                customer.Phones = new List<Phone>();
+            }
+            if (customer.Addresses == null)
+            {
+                customer.Addresses= new List<Address>();
             }
             return View(customer);
         }
@@ -125,8 +126,8 @@ namespace CS.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
-                    await _context.SaveChangesAsync();
+                    this.context.Update(customer);
+                    await this.context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -152,7 +153,7 @@ namespace CS.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.ID == id);
+            var customer = await this.context.Customers.SingleOrDefaultAsync(m => m.ID == id);
             if (customer == null)
             {
                 return NotFound();
@@ -166,15 +167,15 @@ namespace CS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Customers.Remove(customer);
-            await _context.SaveChangesAsync();
+            var customer = await this.context.Customers.SingleOrDefaultAsync(m => m.ID == id);
+            this.context.Customers.Remove(customer);
+            await this.context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         private bool CustomerExists(int id)
         {
-            return _context.Customers.Any(e => e.ID == id);
+            return this.context.Customers.Any(e => e.ID == id);
         }
     }
 }
