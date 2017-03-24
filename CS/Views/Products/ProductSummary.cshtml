@@ -1,0 +1,38 @@
+﻿@using CS.Infrastructure
+@using CS.Models.ProductViewModels
+@model Product
+@{
+    var isAdmin = Context.User.IsInRole("Admin");
+}
+
+<div class="panel panel-info">
+    <div class="panel-heading panel-title csproductsummaryPanelHeading">
+        <div class="pull-left" style="padding-top: 10px;"><strong>@Model.Name</strong></div>
+        @if (isAdmin) { 
+        <form class="form-inline pull-right" asp-controller="Products" asp-action="Delete" asp-route-id="@Model.ID" method="get">
+            <button class="btn btn-primary" type="submit" data-toggle="tooltip" title="Delete Product"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+        </form>
+        <span class="pull-right">&nbsp;</span>
+        <form class="form-inline pull-right" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.ID" method="get">
+            <button class="btn btn-primary" type="submit" data-toggle="tooltip" title="Edit Product Details"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        </form>
+         <span class="pull-right">&nbsp;</span>
+         }
+        <form class="form-inline pull-right" asp-controller="Products" asp-action="AddItemToCart" asp-route-id="@Model.ID" data-ajax="true" data-ajax-method="post" >
+            <input type="hidden" id="returnurl2" name="returnurl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <input type="hidden" id="quantity" value="1"/>
+            <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></button>
+        </form>
+
+    </div>
+    <div class="panel-body"><img src="~/images/@Model.ImageName" class="img-responsive" alt="Image" asp-append-version="true" /></div>
+    <div class="panel-footer csproductsummaryPanelFooter">
+        <div class="pull-left" style="padding-top: 10px">
+            @Model.Description &nbsp;
+        </div>
+        <form class="form-inline pull-right" asp-controller="Products" asp-action="Details" asp-route-id="@Model.ID" method="get">
+            <button class="btn btn-primary" type="submit" data-toggle="tooltip" title="Product Details"><i class="fa fa-info" aria-hidden="true"></i></button>
+        </form>
+
+    </div>
+</div>
