@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CS.Migrations
 {
@@ -11,7 +9,7 @@ namespace CS.Migrations
             migrationBuilder.RenameColumn(
                 name: "ID",
                 table: "Order",
-                newName: "Id");
+                newName: "ID");
 
             migrationBuilder.AlterColumn<string>(
                 name: "QuantityPerUnit",
@@ -44,7 +42,7 @@ namespace CS.Migrations
                 table: "Product");
 
             migrationBuilder.RenameColumn(
-                name: "Id",
+                name: "ID",
                 table: "Order",
                 newName: "ID");
 

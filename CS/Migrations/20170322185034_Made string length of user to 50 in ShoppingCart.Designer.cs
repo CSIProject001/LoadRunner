@@ -8,8 +8,8 @@ using CS.Data;
 namespace CS.Migrations
 {
     [DbContext(typeof(CandiContext))]
-    [Migration("20170314053419_Description field added to Product")]
-    partial class DescriptionfieldaddedtoProduct
+    [Migration("20170322185034_Made string length of user to 50 in ShoppingCart")]
+    partial class Madestringlengthofuserto50inShoppingCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,9 +86,39 @@ namespace CS.Migrations
                     b.ToTable("Phone");
                 });
 
+            modelBuilder.Entity("CS.Models.OrderViewModels.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CartId");
+
+                    b.Property<string>("Coupon");
+
+                    b.Property<decimal>("DiscountPrice");
+
+                    b.Property<int?>("ItemID");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<decimal>("Quantity");
+
+                    b.Property<int?>("ShoppingCartID");
+
+                    b.Property<decimal>("UnitPrice");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemID");
+
+                    b.HasIndex("ShoppingCartID");
+
+                    b.ToTable("CartItem");
+                });
+
             modelBuilder.Entity("CS.Models.OrderViewModels.Order", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("BillingAddressID");
@@ -123,7 +153,7 @@ namespace CS.Migrations
 
                     b.Property<string>("TrackingCode");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("BillingAddressID");
 
@@ -163,21 +193,10 @@ namespace CS.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Coupon");
-
-                    b.Property<decimal>("DiscountPrice");
-
-                    b.Property<int?>("ItemID");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<decimal>("Quantity");
-
-                    b.Property<decimal>("UnitPrice");
+                    b.Property<string>("UserId")
+                        .HasAnnotation("MaxLength", 50);
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ItemID");
 
                     b.ToTable("ShoppingCart");
                 });
@@ -232,6 +251,17 @@ namespace CS.Migrations
                         .HasForeignKey("CustomerID");
                 });
 
+            modelBuilder.Entity("CS.Models.OrderViewModels.CartItem", b =>
+                {
+                    b.HasOne("CS.Models.ProductViewModels.Product", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemID");
+
+                    b.HasOne("CS.Models.OrderViewModels.ShoppingCart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ShoppingCartID");
+                });
+
             modelBuilder.Entity("CS.Models.OrderViewModels.Order", b =>
                 {
                     b.HasOne("CS.Models.DBModels.Address", "BillingAddress")
@@ -248,13 +278,6 @@ namespace CS.Migrations
                     b.HasOne("CS.Models.OrderViewModels.Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
-                });
-
-            modelBuilder.Entity("CS.Models.OrderViewModels.ShoppingCart", b =>
-                {
-                    b.HasOne("CS.Models.ProductViewModels.Product", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemID");
                 });
         }
     }

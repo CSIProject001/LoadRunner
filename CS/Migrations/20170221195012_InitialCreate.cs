@@ -10,9 +10,6 @@
 namespace CS.Migrations
 {
     using System;
-    using System.Collections.Generic;
-
-    using CS.Data.Migrations;
 
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Migrations;
